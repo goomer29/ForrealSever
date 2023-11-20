@@ -27,4 +27,9 @@
     <ProjectReference Include="..\ForrealServerBL\ForrealServerBL.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="DTO\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
 </Project>
