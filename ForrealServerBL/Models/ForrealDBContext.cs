@@ -31,8 +31,7 @@ public partial class ForrealDBContext : DbContext
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.FirstName).HasMaxLength(30);
-            entity.Property(e => e.LastName).HasMaxLength(30);
+            entity.Property(e=>e.UserName).HasMaxLength(30);   
             entity.Property(e => e.UserPswd).HasMaxLength(30);
         });
 
