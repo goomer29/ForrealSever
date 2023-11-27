@@ -1,10 +1,11 @@
 ﻿using ForrealServerBL.Models;
+using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ForrealSever.Controllers
 {
-    [Route("contactsAPI")]
+    [Route ("ForrealApi")]
     [ApiController]
     public class ForrealController : ControllerBase
     {
@@ -16,7 +17,7 @@ namespace ForrealSever.Controllers
         }
         [Route("Login")]
         [HttpPost]
-        public async Task<ActionResult<User>> Login([FromBody] User usr)
+        public async Task<ActionResult<User>> Login([FromBody] LoginDto usr)
         {
 
             User user = null;
