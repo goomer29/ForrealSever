@@ -35,6 +35,27 @@ namespace ForrealSever.Controllers
             return Forbid();
 
         }
+        [Route("SignUp")]
+        [HttpPost]
+        public async Task<ActionResult<User>> SignUp([FromBody] SignUpDto usr)
+        {
+            User user = new User();
+            //add user
+            var u = context.Users.Any(us => us.UserName == usr.UserName);
+            if (!u)
+            {
+                user.UserName = usr.UserName;
+                user.UserPswd = usr.UserPswd;
+                user.Email = usr.Email;
+                context.Users.Add(user);
+                context.SaveChanges();
+                return Ok(user);
+            }
+            else
+            {
+                return Conflict();
+            }
+        }
         #endregion
     }
 }

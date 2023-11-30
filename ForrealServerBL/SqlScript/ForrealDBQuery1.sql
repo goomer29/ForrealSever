@@ -24,7 +24,7 @@ CONSTRAINT UC_Email UNIQUE(Email)
 
 Go
 
-INSERT INTO Users VALUES
-('dark@goomer.com','darkgoomer','1234');
+INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'dark@goomer.com', N'darkgoomer', N'1234')
+INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'avig@gmail.cum', N'avigdor', N'1234569')
 
 GO
