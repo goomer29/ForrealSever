@@ -4,18 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ForrealServerBL.Models;
 
-public partial class ForrealDBContext : DbContext
+public partial class ForrealDbContext : DbContext
 {
-    public ForrealDBContext()
+    public ForrealDbContext()
     {
     }
 
-    public ForrealDBContext(DbContextOptions<ForrealDBContext> options)
+    public ForrealDbContext(DbContextOptions<ForrealDbContext> options)
         : base(options)
     {
     }
 
+    public virtual DbSet<Challenge> Challenges { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
+
+    public virtual DbSet<UsersChallenge> UsersChallenges { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
@@ -23,16 +27,45 @@ public partial class ForrealDBContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Challenge>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Challeng__3214EC27B61ED4E6");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Text).HasMaxLength(255);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27480A4CE2");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC274D98BF0B");
 
             entity.HasIndex(e => e.Email, "UC_Email").IsUnique();
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e=>e.UserName).HasMaxLength(30);   
+            entity.Property(e => e.UserName).HasMaxLength(100);
             entity.Property(e => e.UserPswd).HasMaxLength(30);
+        });
+
+        modelBuilder.Entity<UsersChallenge>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Users_Ch__3214EC27906D4EDC");
+
+            entity.ToTable("Users_Challenges");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.ChallengeId).HasColumnName("ChallengeID");
+            entity.Property(e => e.UserId).HasColumnName("UserID");
+
+            entity.HasOne(d => d.Challenge).WithMany(p => p.UsersChallenges)
+                .HasForeignKey(d => d.ChallengeId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Users_Challenges_ChallangeID");
+
+            entity.HasOne(d => d.User).WithMany(p => p.UsersChallenges)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Users_Challenges_UserID");
         });
 
         OnModelCreatingPartial(modelBuilder);

@@ -10,8 +10,8 @@ namespace ForrealSever.Controllers
     public class ForrealController : ControllerBase
     {
         #region Add connection to the db contextt using depency injection
-        ForrealDBContext context;
-        public ForrealController(ForrealDBContext context)
+        ForrealDbContext context;
+        public ForrealController(ForrealDbContext context)
         {
             this.context = context;
         }

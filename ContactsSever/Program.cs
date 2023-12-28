@@ -15,7 +15,7 @@ namespace ContactsSever
             // Add services to the container.
             #region DBCONTEXT
             string connection = builder.Configuration.GetConnectionString("ForrealDB");
-            builder.Services.AddDbContext<ForrealDBContext>(options => options.UseSqlServer(connection));
+            builder.Services.AddDbContext<ForrealDbContext>(options => options.UseSqlServer(connection));
             #endregion
             #region 1- Json handling
             //json handling

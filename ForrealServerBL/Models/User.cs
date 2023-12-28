@@ -10,5 +10,8 @@ public partial class User
     public string Email { get; set; } = null!;
 
     public string UserName { get; set; } = null!;
+
     public string UserPswd { get; set; } = null!;
+
+    public virtual ICollection<UsersChallenge> UsersChallenges { get; set; } = new List<UsersChallenge>();
 }
