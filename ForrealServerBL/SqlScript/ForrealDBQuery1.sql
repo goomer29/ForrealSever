@@ -42,6 +42,7 @@ Go
 
 INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'dark@goomer.com', N'darkgoomer', N'1234')
 INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'avig@gmail.cum', N'avigdor', N'1234569')
+SET IDENTITY_INSERT [Challenges] ON
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (1, 1, N'say mullet')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (2, 1, N'say mullet')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (3, 2, N'tell a stupid joke to a friend')
