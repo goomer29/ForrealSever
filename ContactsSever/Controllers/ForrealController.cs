@@ -56,6 +56,23 @@ namespace ForrealSever.Controllers
                 return Conflict();
             }
         }
+        //[Route("GetChallenge1")]
+        //[HttpPost]
+        //public async Task<ActionResult<Challenge>> GetChallenge1()
+        //{
+        //    List<Challenge> challenges = new List<Challenge>();
+        //    int count = 0;
+        //    foreach(var challenge in context.Challenges)
+        //    {
+        //        if (challenge.Difficult == 1) 
+        //            challenges.Add(challenge);
+        //        count++;
+        //    }
+        //    Random random = new Random();
+        //    int num = random.Next(0,count);
+            
+        //}
         #endregion
+
     }
 }
