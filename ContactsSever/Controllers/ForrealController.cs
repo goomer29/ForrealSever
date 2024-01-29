@@ -11,10 +11,14 @@ namespace ForrealSever.Controllers
     {
         #region Add connection to the db contextt using depency injection
         ForrealDbContext context;
+        readonly Random random;
         public ForrealController(ForrealDbContext context)
         {
             this.context = context;
+            random = new Random();
         }
+
+
         [Route("Login")]
         [HttpPost]
         public async Task<ActionResult<User>> Login([FromBody] LoginDto usr)
@@ -56,22 +60,16 @@ namespace ForrealSever.Controllers
                 return Conflict();
             }
         }
-        //[Route("GetChallenge1")]
-        //[HttpPost]
-        //public async Task<ActionResult<Challenge>> GetChallenge1()
-        //{
-        //    List<Challenge> challenges = new List<Challenge>();
-        //    int count = 0;
-        //    foreach(var challenge in context.Challenges)
-        //    {
-        //        if (challenge.Difficult == 1) 
-        //            challenges.Add(challenge);
-        //        count++;
-        //    }
-        //    Random random = new Random();
-        //    int num = random.Next(0,count);
-            
-        //}
+        [Route("GetChallenge")]
+        [HttpPost]
+        public async Task<ActionResult<Challenge>> GetChallenge(int difficult)
+        {
+            List<Challenge> challenges = context.Challenges.Where(x => x.Difficult == difficult).ToList();
+            int num = random.Next(0, challenges.Count);
+            if (challenges[num]!=null)
+            return Ok(challenges[num]);
+            return Conflict();
+        }
         #endregion
 
     }
