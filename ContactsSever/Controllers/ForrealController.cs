@@ -61,10 +61,12 @@ namespace ForrealSever.Controllers
             }
         }
         [Route("GetChallenge")]
-        [HttpPost]
-        public async Task<ActionResult<Challenge>> GetChallenge(int difficult)
+        [HttpGet]
+        public async Task<ActionResult> GetChallenge([FromQuery]int difficult)
         {
             List<Challenge> challenges = context.Challenges.Where(x => x.Difficult == difficult).ToList();
+            if(challenges.Count == 0)   
+                return Ok(null);
             int num = random.Next(0, challenges.Count);
             if (challenges[num]!=null)
             return Ok(challenges[num]);
