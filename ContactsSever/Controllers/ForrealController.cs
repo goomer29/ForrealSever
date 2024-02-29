@@ -79,6 +79,9 @@ namespace ForrealSever.Controllers
             }            
             return Ok(ch);
         }
+        //[Route("UploadImage")]
+        //[HttpPost]
+        //public async t
         #endregion
 
     }
