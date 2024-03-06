@@ -79,9 +79,28 @@ namespace ForrealSever.Controllers
             }            
             return Ok(ch);
         }
-        //[Route("UploadImage")]
-        //[HttpPost]
-        //public async t
+        [Route("UploadImage")]
+        [HttpPost]
+        public async Task<IActionResult> UploadImage(IFormFile file, [FromQuery] int userID)
+        {
+            var user = context.Users.Find(userID);
+            string p = "";
+            if (file.Length > 0)
+            {
+                string FileName = $"{user.Id}.{p}{Path.GetExtension(file.FileName)}";
+                string path=Path.Combine(Directory.GetCurrentDirectory(), "Wwwroot/images", FileName);
+                try
+                {
+                    using(var fileStream= new FileStream(path, FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    return Ok();
+                }
+                catch (Exception ex) { Console.WriteLine(ex.Message); }
+            }
+            return BadRequest();
+        }
         #endregion
 
     }
