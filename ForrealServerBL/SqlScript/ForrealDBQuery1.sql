@@ -33,6 +33,7 @@ Create Table Users_Challenges(
 ID int Identity primary key,
 UserID int not null,
 ChallengeID int not null,
+Median varchar(255) NULL,
 )
 Go
 Alter Table Users_Challenges Add Constraint FK_Users_Challenges_UserID Foreign Key (UserID) References Users(ID)

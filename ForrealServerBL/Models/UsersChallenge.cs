@@ -11,6 +11,8 @@ public partial class UsersChallenge
 
     public int ChallengeId { get; set; }
 
+    public string? Media { get; set; }
+
     public virtual Challenge Challenge { get; set; } = null!;
 
     public virtual User User { get; set; } = null!;

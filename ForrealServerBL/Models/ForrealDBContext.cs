@@ -29,7 +29,7 @@ public partial class ForrealDbContext : DbContext
     {
         modelBuilder.Entity<Challenge>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Challeng__3214EC27B61ED4E6");
+            entity.HasKey(e => e.Id).HasName("PK__Challeng__3214EC2703A47ACA");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Text).HasMaxLength(255);
@@ -37,7 +37,7 @@ public partial class ForrealDbContext : DbContext
 
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC274D98BF0B");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27A1187B76");
 
             entity.HasIndex(e => e.Email, "UC_Email").IsUnique();
 
@@ -49,12 +49,15 @@ public partial class ForrealDbContext : DbContext
 
         modelBuilder.Entity<UsersChallenge>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users_Ch__3214EC27906D4EDC");
+            entity.HasKey(e => e.Id).HasName("PK__Users_Ch__3214EC27DC12A997");
 
             entity.ToTable("Users_Challenges");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.ChallengeId).HasColumnName("ChallengeID");
+            entity.Property(e => e.Media)
+                .HasMaxLength(255)
+                .IsUnicode(false);
             entity.Property(e => e.UserId).HasColumnName("UserID");
 
             entity.HasOne(d => d.Challenge).WithMany(p => p.UsersChallenges)
