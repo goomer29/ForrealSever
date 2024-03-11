@@ -17,8 +17,8 @@ namespace ForrealSever.Controllers
             this.context = context;
             random = new Random();
         }
-
-
+        
+        #region Login
         [Route("Login")]
         [HttpPost]
         public async Task<ActionResult<User>> Login([FromBody] LoginDto usr)
@@ -39,6 +39,8 @@ namespace ForrealSever.Controllers
             return Forbid();
 
         }
+        #endregion
+        #region SignUp
         [Route("SignUp")]
         [HttpPost]
         public async Task<ActionResult<User>> SignUp([FromBody] SignUpDto usr)
@@ -60,6 +62,8 @@ namespace ForrealSever.Controllers
                 return Conflict();
             }
         }
+        #endregion
+        #region Get Challenges for dialy challenges
         [Route("GetChallenge")]
         [HttpGet]
         public async Task<ActionResult> GetChallenge()
@@ -79,6 +83,8 @@ namespace ForrealSever.Controllers
             }            
             return Ok(ch);
         }
+        #endregion
+        #region Upload Image to the server
         [Route("UploadImage")]
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file, [FromQuery] int userID)
@@ -101,6 +107,7 @@ namespace ForrealSever.Controllers
             }
             return BadRequest();
         }
+        #endregion
         #endregion
 
     }
