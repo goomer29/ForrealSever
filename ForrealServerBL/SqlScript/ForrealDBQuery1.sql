@@ -50,5 +50,6 @@ INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (3, 2, N'tell 
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (4, 3, N'take a picture with someone with a yellow shirt')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (5, 4, N'take a picture from the grabege mountain')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (6, 4, N'do a backflip')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (7, 1, N'say avigdormullet')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (7, 5, N'do a boreg')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (8, 1, N'say avigdormullet')
 GO

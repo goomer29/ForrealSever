@@ -87,13 +87,14 @@ namespace ForrealSever.Controllers
         #region Upload Image to the server
         [Route("UploadImage")]
         [HttpPost]
-        public async Task<IActionResult> UploadImage(IFormFile file, [FromQuery] int userID)
+        public async Task<IActionResult> UploadImage(IFormFile file, [FromQuery] PostDto post)
         {
-            var user = context.Users.Find(userID);
-            string p = "";
-            if (file.Length > 0)
+
+            var user = context.Users.Where((u) => u.UserName == post.username).FirstOrDefault();
+            var challenge= context.Challenges.Where((ch) => ch.Text== post.challengename).FirstOrDefault();
+            if (file.Length > 0&& challenge!=null&&user!=null)
             {
-                string FileName = $"{user.Id}.{p}{Path.GetExtension(file.FileName)}";
+                string FileName = $"{user.Id}-{challenge.Id}{Path.GetExtension(file.FileName)}";
                 string path=Path.Combine(Directory.GetCurrentDirectory(), "Wwwroot/images", FileName);
                 try
                 {
