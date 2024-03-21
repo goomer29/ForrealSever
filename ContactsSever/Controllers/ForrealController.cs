@@ -2,6 +2,7 @@
 using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace ForrealSever.Controllers
 {
@@ -87,11 +88,11 @@ namespace ForrealSever.Controllers
         #region Upload Image to the server
         [Route("UploadImage")]
         [HttpPost]
-        public async Task<IActionResult> UploadImage(IFormFile file, [FromQuery] PostDto post)
+        public async Task<IActionResult> UploadImage(IFormFile file, [FromForm] string post)
         {
-
-            var user = context.Users.Where((u) => u.UserName == post.username).FirstOrDefault();
-            var challenge= context.Challenges.Where((ch) => ch.Text== post.challengename).FirstOrDefault();
+            var p = JsonSerializer.Deserialize<PostDto>(post);
+            var user = context.Users.Where((u) => u.UserName == p.username).FirstOrDefault();
+            var challenge= context.Challenges.Where((ch) => ch.Text== p.challengename).FirstOrDefault();
             if (file.Length > 0&& challenge!=null&&user!=null)
             {
                 string FileName = $"{user.Id}-{challenge.Id}{Path.GetExtension(file.FileName)}";
