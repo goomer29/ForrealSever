@@ -93,6 +93,7 @@ namespace ForrealSever.Controllers
             var p = JsonSerializer.Deserialize<PostDto>(post);
             var user = context.Users.Where((u) => u.UserName == p.username).FirstOrDefault();
             var challenge= context.Challenges.Where((ch) => ch.Text== p.challengename).FirstOrDefault();
+
             if (file.Length > 0&& challenge!=null&&user!=null)
             {
                 string FileName = $"{user.Id}-{challenge.Id}{Path.GetExtension(file.FileName)}";
@@ -103,6 +104,10 @@ namespace ForrealSever.Controllers
                     {
                         file.CopyTo(fileStream);
                     }
+                    var user_challenge = new UsersChallenge();
+                    user_challenge.Challenge = challenge; user_challenge.User = user; user_challenge.Media = FileName;
+                    context.UsersChallenges.Add(user_challenge);
+                    context.SaveChanges();
                     return Ok();
                 }
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
