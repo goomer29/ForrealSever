@@ -33,8 +33,12 @@ Create Table Users_Challenges(
 ID int Identity primary key,
 UserID int not null,
 ChallengeID int not null,
-Median varchar(255) NULL,
+Media varchar(255) NULL,
 )
+SET IDENTITY_INSERT [dbo].[Users_Challenges] ON
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (1, 1, 3, N'1-3.jpg')
+SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
+
 Go
 Alter Table Users_Challenges Add Constraint FK_Users_Challenges_UserID Foreign Key (UserID) References Users(ID)
 Alter Table Users_Challenges Add Constraint FK_Users_Challenges_ChallangeID Foreign Key (ChallengeID) References Challenges(ID)
