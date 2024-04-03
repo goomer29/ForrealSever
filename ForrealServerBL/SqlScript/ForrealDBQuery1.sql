@@ -49,9 +49,16 @@ CREATE TABLE [dbo].[Friends] (
 	CONSTRAINT [FK_Friends_User2ID] FOREIGN KEY ([User2ID]) REFERENCES [dbo].[Users] ([ID])
 );
 Go
+SET IDENTITY_INSERT [dbo].[Users] ON
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (1, N'dark@goomer.com', N'darkgoomer', N'1234')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (2, N'avig@gmail.cum', N'avigdor', N'1234569')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (3, N'goldfish@gmail.com', N'goldfish', N'blueblue123')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (4, N'ofiravr06@gmail.com', N'Mandi', N'ofir2856')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (5, N'noa@gmail', N'Noa', N'123')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (6, N'shmantul@rushi.meow', N'gilgol55', N'shmantul123')
+SET IDENTITY_INSERT [dbo].[Users] OFF
+Go
 
-INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'dark@goomer.com', N'darkgoomer', N'1234')
-INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'avig@gmail.cum', N'avigdor', N'1234569')
 SET IDENTITY_INSERT [Challenges] ON
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (1, 1, N'say mullet')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (2, 1, N'say mullet')
@@ -66,5 +73,9 @@ GO
 
 SET IDENTITY_INSERT [dbo].[Users_Challenges] ON
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (1, 1, 3, N'1-3.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (2, 4, 8, N'4-8.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (3, 5, 5, N'5-5.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (4, 5, 5, N'5-5.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (5, 6, 3, N'6-3.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 

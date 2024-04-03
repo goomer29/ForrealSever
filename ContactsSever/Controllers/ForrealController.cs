@@ -115,6 +115,15 @@ namespace ForrealSever.Controllers
             return BadRequest();
         }
         #endregion
+        #region get all users
+        [Route("GetAllUsers")]
+        [HttpGet]
+        public async Task<ActionResult> GetAllUsers()
+        {
+            List<User> users = context.Users.ToList();
+            return Ok(users);
+        }
+        #endregion
         #endregion
 
     }

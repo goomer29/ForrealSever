@@ -13,5 +13,9 @@ public partial class User
 
     public string UserPswd { get; set; } = null!;
 
+    public virtual ICollection<Friend> FriendUser1s { get; set; } = new List<Friend>();
+
+    public virtual ICollection<Friend> FriendUser2s { get; set; } = new List<Friend>();
+
     public virtual ICollection<UsersChallenge> UsersChallenges { get; set; } = new List<UsersChallenge>();
 }
