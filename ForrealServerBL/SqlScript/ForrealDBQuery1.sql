@@ -35,14 +35,19 @@ UserID int not null,
 ChallengeID int not null,
 Media varchar(255) NULL,
 )
-SET IDENTITY_INSERT [dbo].[Users_Challenges] ON
-INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (1, 1, 3, N'1-3.jpg')
-SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 
 Go
 Alter Table Users_Challenges Add Constraint FK_Users_Challenges_UserID Foreign Key (UserID) References Users(ID)
 Alter Table Users_Challenges Add Constraint FK_Users_Challenges_ChallangeID Foreign Key (ChallengeID) References Challenges(ID)
-
+Go
+CREATE TABLE [dbo].[Friends] (
+    [ID]      INT IDENTITY (1, 1) NOT NULL,
+    [User1ID] INT NOT NULL,
+    [User2ID] INT NOT NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_Friends_User1ID] FOREIGN KEY ([User1ID]) REFERENCES [dbo].[Users] ([ID]),
+	CONSTRAINT [FK_Friends_User2ID] FOREIGN KEY ([User2ID]) REFERENCES [dbo].[Users] ([ID])
+);
 Go
 
 INSERT INTO [dbo].[Users] ([Email], [UserName], [UserPswd]) VALUES (N'dark@goomer.com', N'darkgoomer', N'1234')
@@ -56,4 +61,10 @@ INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (5, 4, N'take 
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (6, 4, N'do a backflip')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (7, 5, N'do a boreg')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (8, 1, N'say avigdormullet')
+SET IDENTITY_INSERT [Challenges] OFF
 GO
+
+SET IDENTITY_INSERT [dbo].[Users_Challenges] ON
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (1, 1, 3, N'1-3.jpg')
+SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
+
