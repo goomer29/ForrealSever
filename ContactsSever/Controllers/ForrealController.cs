@@ -124,6 +124,14 @@ namespace ForrealSever.Controllers
             return Ok(users);
         }
         #endregion
+        #region make freind request
+        //[Route("FriendRequest")]
+        //[HttpPost]
+        //public async Task<ActionResult> FreindRequest()
+        //{
+
+        //}
+        #endregion
         #endregion
 
     }
