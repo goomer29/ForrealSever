@@ -3,6 +3,7 @@ using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 
 namespace ForrealSever.Controllers
 {
@@ -125,12 +126,41 @@ namespace ForrealSever.Controllers
         }
         #endregion
         #region make freind request
-        //[Route("FriendRequest")]
-        //[HttpPost]
-        //public async Task<ActionResult> FreindRequest()
-        //{
-
-        //}
+        [Route("FriendRequest")]
+        [HttpPost]
+        public async Task<IActionResult> FreindRequest([FromBody] FriendDto f)
+          {
+            try
+            {
+                var user1 = context.Users.Where((u) => u.UserName == f.username1).FirstOrDefault();
+                var user2 = context.Users.Where((u) => u.UserName == f.username2).FirstOrDefault();
+                Friend friend = new Friend();
+                friend.User1Id = user1.Id; friend.User2Id = user2.Id;
+                context.Friends.Add(friend);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return BadRequest();
+        }
+        #endregion
+        #region get Users which recived friend request
+        [Route("GetWantedFriends")]
+        [HttpGet]
+        public async Task<ActionResult> GetWantedFriends(string username)
+        {
+            var user = context.Users.Where((u) => u.UserName == username).FirstOrDefault();
+            List<User> Friends = new List<User>();
+            List<User> Users = context.Users.ToList();
+            var f1 = context.Friends.Where((f) => f.User1Id == user.Id).ToList();
+            foreach (var friend in f1)
+            {
+                int wanted_id = friend.User2Id;
+                var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
+                Friends.Add(wanted_user);
+            }
+            return Ok(Friends);
+        }
         #endregion
         #endregion
 
