@@ -2,6 +2,7 @@
 using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 
@@ -144,13 +145,13 @@ namespace ForrealSever.Controllers
             return BadRequest();
         }
         #endregion
-        #region get Users which recived friend request
+        #region get Users which recived friend request by the user
         [Route("GetWantedFriends")]
-        [HttpGet]
-        public async Task<ActionResult> GetWantedFriends(string username)
+        [HttpPost]
+        public async Task<ActionResult> GetWantedFriends([FromBody] string username)
         {
             var user = context.Users.Where((u) => u.UserName == username).FirstOrDefault();
-            List<User> Friends = new List<User>();
+           List<User> Friends = new List<User>();
             List<User> Users = context.Users.ToList();
             var f1 = context.Friends.Where((f) => f.User1Id == user.Id).ToList();
             foreach (var friend in f1)
@@ -159,6 +160,24 @@ namespace ForrealSever.Controllers
                 var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
                 Friends.Add(wanted_user);
             }
+            return Ok(Friends);
+        }
+        #endregion
+        #region get Users that sent friend request to the user
+        [Route("GetRequestFriends")]
+        [HttpGet]
+        public async Task<ActionResult> GetRequestFriends(string username)
+        {
+            var user = context.Users.Where((u) => u.UserName == username).FirstOrDefault();
+            List<User> Friends = new List<User>();
+            List<User> Users = context.Users.ToList();
+            var f2 = context.Friends.Where((f) => f.User2Id == user.Id).ToList();
+            foreach (var friend in f2)
+            {
+                int wanted_id = friend.User1Id;
+                var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
+                Friends.Add(wanted_user);
+            } 
             return Ok(Friends);
         }
         #endregion
