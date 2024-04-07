@@ -78,4 +78,13 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (4, 5, 5, N'5-5.jpg')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (5, 6, 3, N'6-3.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
+Go
 
+SET IDENTITY_INSERT [dbo].[Friends] ON
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (1, 1, 3)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (6, 1, 5)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (8, 1, 4)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (9, 3, 2)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (10, 3, 1)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (11, 3, 6)
+SET IDENTITY_INSERT [dbo].[Friends] OFF
