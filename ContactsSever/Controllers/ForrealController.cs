@@ -145,40 +145,64 @@ namespace ForrealSever.Controllers
             return BadRequest();
         }
         #endregion
+        #region delete friend request
+        [Route("EnemyRequest")]
+        [HttpPost]
+        public async Task<IActionResult> EnemyRequest([FromBody] FriendDto f)
+        {
+            try
+            {
+                var user1 = context.Users.Where((u) => u.UserName == f.username1).FirstOrDefault();
+                var user2 = context.Users.Where((u) => u.UserName == f.username2).FirstOrDefault();
+                var friend = context.Friends.Where((fr) => fr.User1Id == user1.Id);
+                var friend2 = friend.Where((fr)=>fr.User2Id==user2.Id).FirstOrDefault();
+                context.Friends.Remove(friend2);
+                context.SaveChanges();
+                return Ok();
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return BadRequest();
+        }
+        #endregion
         #region get Users which recived friend request by the user
         [Route("GetWantedFriends")]
         [HttpPost]
         public async Task<ActionResult> GetWantedFriends([FromBody] string username)
         {
-            var user = context.Users.Where((u) => u.UserName == username).FirstOrDefault();
-           List<User> Friends = new List<User>();
-            List<User> Users = context.Users.ToList();
-            var f1 = context.Friends.Where((f) => f.User1Id == user.Id).ToList();
-            foreach (var friend in f1)
+            var user = context.Users.Where(u => u.UserName == username).FirstOrDefault();
+            ObservableCollection<string> Friends = new ObservableCollection<string>();
+            if (user != null)
             {
-                int wanted_id = friend.User2Id;
-                var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
-                Friends.Add(wanted_user);
+                var f1 = context.Friends.Where(f => f.User1Id == user.Id).ToList();
+                foreach (var friend in f1)
+                {
+                    int wanted_id = friend.User2Id;
+                    var wanted_user = context.Users.Where(u => u.Id == wanted_id).FirstOrDefault();
+                    if (wanted_user != null)
+                        Friends.Add(wanted_user.UserName);
+                }
             }
-            return Ok(Friends);
+            return Ok(Friends.ToList());
         }
         #endregion
         #region get Users that sent friend request to the user
         [Route("GetRequestFriends")]
-        [HttpGet]
-        public async Task<ActionResult> GetRequestFriends(string username)
+        [HttpPost]
+        public async Task<ActionResult> GetRequestFriends([FromBody] string username)
         {
             var user = context.Users.Where((u) => u.UserName == username).FirstOrDefault();
-            List<User> Friends = new List<User>();
-            List<User> Users = context.Users.ToList();
-            var f2 = context.Friends.Where((f) => f.User2Id == user.Id).ToList();
-            foreach (var friend in f2)
+            ObservableCollection<string> Friends = new ObservableCollection<string>();
+            if (user != null)
             {
-                int wanted_id = friend.User1Id;
-                var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
-                Friends.Add(wanted_user);
-            } 
-            return Ok(Friends);
+                var f2 = context.Friends.Where((f) => f.User2Id == user.Id).ToList();
+                foreach (var friend in f2)
+                {
+                    int wanted_id = friend.User1Id;
+                    var wanted_user = context.Users.Where((u) => u.Id == wanted_id).FirstOrDefault();
+                    Friends.Add(wanted_user.UserName);
+                }          
+            }
+            return Ok(Friends.ToList());
         }
         #endregion
         #endregion
