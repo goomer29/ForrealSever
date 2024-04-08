@@ -92,13 +92,16 @@ namespace ForrealSever.Controllers
         [HttpPost]
         public async Task<IActionResult> UploadImage(IFormFile file, [FromForm] string post)
         {
+            DateTime time = DateTime.Now;
+            string day = time.Day.ToString(); string month = time.Month.ToString(); string year=time.Year.ToString();
+            string date = day + "_" + month + "_" + year;
             var p = JsonSerializer.Deserialize<PostDto>(post);
             var user = context.Users.Where((u) => u.UserName == p.username).FirstOrDefault();
             var challenge= context.Challenges.Where((ch) => ch.Text== p.challengename).FirstOrDefault();
 
             if (file.Length > 0&& challenge!=null&&user!=null)
             {
-                string FileName = $"{user.Id}-{challenge.Id}{Path.GetExtension(file.FileName)}";
+                string FileName = $"{user.Id}_{challenge.Id}_{date}{Path.GetExtension(file.FileName)}";
                 string path=Path.Combine(Directory.GetCurrentDirectory(), "Wwwroot/images", FileName);
                 try
                 {
@@ -115,6 +118,20 @@ namespace ForrealSever.Controllers
                 catch (Exception ex) { Console.WriteLine(ex.Message); }
             }
             return BadRequest();
+        }
+        #endregion
+        #region Get Images from the server
+        [Route("GetImages")]
+        [HttpGet]
+        public async Task<ActionResult> GetImages()
+        {
+            ObservableCollection<string> images = new ObservableCollection<string>();
+            var posts = context.UsersChallenges.ToList();
+            foreach(var p in posts)
+            {
+                images.Add(p.Media);
+            }
+            return Ok(images);
         }
         #endregion
         #region get all users
