@@ -66,6 +66,15 @@ namespace ForrealSever.Controllers
             }
         }
         #endregion
+        #region get User ID
+        [Route("GetUserID")]
+        [HttpPost]
+        public async Task<int> GetUserID([FromForm] string username)
+        {
+            var user = context.Users.Where(u => u.UserName == username).FirstOrDefault();
+            return (user.Id);
+        }
+            #endregion
         #region Get Challenges for dialy challenges
         [Route("GetChallenge")]
         [HttpGet]
