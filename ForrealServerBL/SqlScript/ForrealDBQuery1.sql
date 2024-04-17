@@ -56,6 +56,7 @@ INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (3, N'g
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (4, N'ofiravr06@gmail.com', N'Mandi', N'ofir2856')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (5, N'noa@gmail', N'Noa', N'123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (6, N'shmantul@rushi.meow', N'gilgol55', N'shmantul123')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (7, N'bot@gmail.com', N'bot', N'bot123')
 SET IDENTITY_INSERT [dbo].[Users] OFF
 Go
 
@@ -77,14 +78,15 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (3, 5, 5, N'5-5.jpg')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (4, 5, 5, N'5-5.jpg')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (5, 6, 3, N'6-3.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (6, 7, 6, N'7_6_17_4_2024.jpg')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
 SET IDENTITY_INSERT [dbo].[Friends] ON
-INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (1, 1, 3)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (6, 1, 5)
-INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (8, 1, 4)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (9, 3, 2)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (10, 3, 1)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (11, 3, 6)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (12, 1, 6)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (13, 1, 3)
 SET IDENTITY_INSERT [dbo].[Friends] OFF

@@ -2,6 +2,7 @@
 using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
@@ -69,12 +70,51 @@ namespace ForrealSever.Controllers
         #region get User ID
         [Route("GetUserID")]
         [HttpPost]
-        public async Task<int> GetUserID([FromForm] string username)
+        public async Task<ActionResult> GetUserID([FromBody] string username)
         {
-            var user = context.Users.Where(u => u.UserName == username).FirstOrDefault();
-            return (user.Id);
+            try
+            {
+                var user = await context.Users.FirstOrDefaultAsync(u => u.UserName == username);
+                if (user != null)
+                {
+                    return Ok(user.Id);
+                }
+                else
+                {
+                    return NotFound(); // Or return a custom error message
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while processing your request."); // Or return a custom error message
+            }
         }
-            #endregion
+        #endregion
+        #region Get Challange name based on ID
+        [Route("GetChallangeName")]
+        [HttpPost]
+        public async Task<ActionResult> GetChallangeName([FromBody] int id)
+        {
+            try
+            {
+                var challange = await context.Challenges.FirstOrDefaultAsync(ch => ch.Id == id);
+                if (challange != null)
+                {
+                    return Ok(challange.Text);
+                }
+                else
+                {
+                    return NotFound(); // Or return a custom error message
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while processing your request."); // Or return a custom error message
+            }
+        }
+        #endregion
         #region Get Challenges for dialy challenges
         [Route("GetChallenge")]
         [HttpGet]
@@ -150,6 +190,20 @@ namespace ForrealSever.Controllers
         {
             List<User> users = context.Users.ToList();
             return Ok(users);
+        }
+        #endregion
+        #region get all challnges with ID
+        [Route("GetAllChallanges")]
+        [HttpGet]
+        public async Task<ActionResult> GetAllChallanges()
+        {
+            List<ChallangeNameDto> challangenames = new List<ChallangeNameDto>();
+            List<Challenge> challenges = context.Challenges.ToList();
+            foreach (var ch in challenges)
+            {
+                challangenames.Add(new ChallangeNameDto() { id = ch.Id, text = ch.Text });
+            }
+            return Ok(challangenames);
         }
         #endregion
         #region make freind request
