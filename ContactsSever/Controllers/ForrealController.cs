@@ -91,6 +91,30 @@ namespace ForrealSever.Controllers
             }
         }
         #endregion
+        #region get Challange ID
+        [Route("GetChallangeID")]
+        [HttpPost]
+        public async Task<ActionResult> GetChallangeID([FromBody] string challangename)
+        {
+            try
+            {
+                var challange = await context.Challenges.FirstOrDefaultAsync(u => u.Text == challangename);
+                if (challange != null)
+                {
+                    return Ok(challange.Id);
+                }
+                else
+                {
+                    return NotFound(); // Or return a custom error message
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while processing your request."); // Or return a custom error message
+            }
+        }
+        #endregion
         #region Get Challange name based on ID
         [Route("GetChallangeName")]
         [HttpPost]
