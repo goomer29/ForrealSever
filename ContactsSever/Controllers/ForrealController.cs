@@ -216,6 +216,20 @@ namespace ForrealSever.Controllers
             return Ok(users);
         }
         #endregion
+        #region get all users with ID
+        [Route("GetAllUsersWithID")]
+        [HttpGet]
+        public async Task<ActionResult> GetAllUsersWithID()
+        {
+            List<UserNameDto> usernames = new List<UserNameDto>();
+            List<User> users = context.Users.ToList();
+            foreach (var u in users)
+            {
+                usernames.Add(new UserNameDto() { id = u.Id, text = u.UserName });
+            }
+            return Ok(usernames);
+        }
+         #endregion
         #region get all challnges with ID
         [Route("GetAllChallanges")]
         [HttpGet]
