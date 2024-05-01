@@ -17,5 +17,7 @@ public partial class User
 
     public virtual ICollection<Friend> FriendUser2s { get; set; } = new List<Friend>();
 
+    public virtual ICollection<Message> Messages { get; set; } = new List<Message>();
+
     public virtual ICollection<UsersChallenge> UsersChallenges { get; set; } = new List<UsersChallenge>();
 }

@@ -19,19 +19,21 @@ public partial class ForrealDbContext : DbContext
 
     public virtual DbSet<Friend> Friends { get; set; }
 
+    public virtual DbSet<Message> Messages { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     public virtual DbSet<UsersChallenge> UsersChallenges { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ForrealDB;Trusted_Connection=True;TrustServerCertificate=True");
+        => optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=ForrealDB;Trusted_Connection=True;TrustServerCertificate=True");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Challenge>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Challeng__3214EC277BDC3EBA");
+            entity.HasKey(e => e.Id).HasName("PK__Challeng__3214EC27BE435437");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.Text).HasMaxLength(255);
@@ -39,7 +41,7 @@ public partial class ForrealDbContext : DbContext
 
         modelBuilder.Entity<Friend>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC27E60E0C80");
+            entity.HasKey(e => e.Id).HasName("PK__Friends__3214EC274F9C3359");
 
             entity.Property(e => e.Id).HasColumnName("ID");
             entity.Property(e => e.User1Id).HasColumnName("User1ID");
@@ -56,9 +58,33 @@ public partial class ForrealDbContext : DbContext
                 .HasConstraintName("FK_Friends_User2ID");
         });
 
+        modelBuilder.Entity<Message>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__Messages__3214EC27EAA56042");
+
+            entity.Property(e => e.Id).HasColumnName("ID");
+            entity.Property(e => e.Message1)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("Message");
+            entity.Property(e => e.Time).HasColumnType("smalldatetime");
+            entity.Property(e => e.UserChId).HasColumnName("UserChID");
+            entity.Property(e => e.UserSentId).HasColumnName("UserSentID");
+
+            entity.HasOne(d => d.UserCh).WithMany(p => p.Messages)
+                .HasForeignKey(d => d.UserChId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Friends_UserChID");
+
+            entity.HasOne(d => d.UserSent).WithMany(p => p.Messages)
+                .HasForeignKey(d => d.UserSentId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Friends_UserSentID");
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27F2C73499");
+            entity.HasKey(e => e.Id).HasName("PK__Users__3214EC27ECA7C112");
 
             entity.HasIndex(e => e.Email, "UC_Email").IsUnique();
 
@@ -70,7 +96,7 @@ public partial class ForrealDbContext : DbContext
 
         modelBuilder.Entity<UsersChallenge>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Users_Ch__3214EC2703949EE6");
+            entity.HasKey(e => e.Id).HasName("PK__Users_Ch__3214EC27719B361F");
 
             entity.ToTable("Users_Challenges");
 

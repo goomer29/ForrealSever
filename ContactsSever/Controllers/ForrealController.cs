@@ -1,6 +1,7 @@
 ﻿using ForrealServerBL.Models;
 using ForrealSever.DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.ObjectModel;
@@ -322,6 +323,28 @@ namespace ForrealSever.Controllers
             }
             return Ok(Friends.ToList());
         }
+        #endregion
+        #region add a comment to a post
+        //[Route("Add Comment")]
+        //[HttpPost]
+        //public async Task<IActionResult> FreindRequest([FromBody] MessageDto m)
+        //{
+        //    var user = context.Users.Where((u) => u.UserName == m.username).FirstOrDefault();
+        //    int id = user.Id;
+        //    var ch = context.Challenges.Where((ch) => ch.Text == m.challangename).FirstOrDefault();
+        //    var usersent = context.Users.Where((u) => u.UserName == m.usernamesent).FirstOrDefault();
+        //    var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
+        //    var time=DateTime.Now;
+        //    string day=time.Day; string month = time.Month; string Year = time.Year;
+        //    foreach(var post in posts)
+        //    {
+        //        string[] infoes = post.Media.Split("_");
+        //        if(infoes.Length > 3)
+        //        {
+
+        //        }
+        //    }
+        //}
         #endregion
         #endregion
 

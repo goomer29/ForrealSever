@@ -49,6 +49,18 @@ CREATE TABLE [dbo].[Friends] (
 	CONSTRAINT [FK_Friends_User2ID] FOREIGN KEY ([User2ID]) REFERENCES [dbo].[Users] ([ID])
 );
 Go
+CREATE TABLE [dbo].[Messages] (
+    [ID]         INT           IDENTITY (1, 1) NOT NULL,
+    [UserChID]   INT           NOT NULL,
+    [UserSentID] INT           NOT NULL,
+    [Message]    VARCHAR (255) NULL,
+    [Time]       SMALLDATETIME NULL,
+    PRIMARY KEY CLUSTERED ([ID] ASC),
+    CONSTRAINT [FK_Friends_UserChID] FOREIGN KEY ([UserChID]) REFERENCES [dbo].[Users_Challenges] ([ID]),
+    CONSTRAINT [FK_Friends_UserSentID] FOREIGN KEY ([UserSentID]) REFERENCES [dbo].[Users] ([ID])
+);
+
+Go
 SET IDENTITY_INSERT [dbo].[Users] ON
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (1, N'dark@goomer.com', N'darkgoomer', N'1234')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (2, N'avig@gmail.cum', N'avigdor', N'1234569')
@@ -103,6 +115,12 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (28, 1, 4, N'1_4_29_4_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (29, 7, 6, N'7_6_29_4_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (30, 3, 5, N'3_5_29_4_2024.mp4')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (31, 6, 4, N'6_4_1_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (32, 1, 7, N'1_7_1_5_2024.mp4')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (33, 7, 4, N'7_4_1_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (34, 1, 3, N'1_3_1_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (35, 7, 1, N'7_1_1_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (36, 1, 1, N'1_1_1_5_2024.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
