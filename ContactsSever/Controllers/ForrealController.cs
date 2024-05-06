@@ -325,28 +325,51 @@ namespace ForrealSever.Controllers
         }
         #endregion
         #region add a comment to a post
-        //[Route("Add Comment")]
-        //[HttpPost]
-        //public async Task<IActionResult> FreindRequest([FromBody] MessageDto m)
-        //{
-        //    var user = context.Users.Where((u) => u.UserName == m.username).FirstOrDefault();
-        //    int id = user.Id;
-        //    var ch = context.Challenges.Where((ch) => ch.Text == m.challangename).FirstOrDefault();
-        //    var usersent = context.Users.Where((u) => u.UserName == m.usernamesent).FirstOrDefault();
-        //    var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
-        //    var time = DateTime.Now;
-        //    string day = time.Day.ToString();  string month = time.Month.ToString(); string Year = time.Year.ToString();
-        //    foreach (var post in posts)
-        //    {
-        //        string[] infoes = post.Media.Split("_");
-        //        if (infoes.Length > 3)
-        //        {
-
-        //        }
-        //    }
-        //}
+        [Route("Add Comment")]
+        [HttpPost]
+        public async Task<IActionResult> FreindRequest([FromBody] MessageDto m)
+        {
+            try
+            {
+                var user = context.Users.Where((u) => u.UserName == m.username).FirstOrDefault();
+                var ch = context.Challenges.Where((ch) => ch.Text == m.challangename).FirstOrDefault();
+                var usersent = context.Users.Where((u) => u.UserName == m.usernamesent).FirstOrDefault();
+                var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
+                var time = DateTime.Now;
+                string day = time.Day.ToString(); string month = time.Month.ToString(); string Year = time.Year.ToString();
+                foreach (var post in posts)
+                {
+                    var data = CreatePostData(post.Media);
+                    if (data.Date == DateTime.Now.Date)
+                    {
+                        Message message = new Message() { UserChId = post.Id, UserSentId = usersent.Id, Time = time, Message1 = m.text };
+                        context.Messages.Add(message);
+                        context.SaveChanges();
+                        return Ok();
+                    }
+                }
+            }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            return BadRequest();
+        }          
         #endregion
         #endregion
+        private PostData CreatePostData(string name)
+        {
+            PostData postData = new PostData();
+            var infoes = name.Split('_');
+            string[] infofoes = null;
+            if (infoes.Length > 3)
+            {
+                infofoes = infoes[4].Split(".");
 
+                postData.UserId = Int32.Parse(infoes[0]);
+                postData.Date = new DateTime(Int32.Parse(infofoes[0]), Int32.Parse(infoes[3]), Int32.Parse(infoes[2]));
+                postData.ChallengeId = Int32.Parse(infoes[1]);
+                postData.FileType = infofoes[1];
+
+            }
+            return postData;
+        }
     }
 }

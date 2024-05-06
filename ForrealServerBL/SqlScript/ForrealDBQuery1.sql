@@ -69,6 +69,7 @@ INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (4, N'o
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (5, N'noa@gmail', N'Noa', N'123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (6, N'shmantul@rushi.meow', N'gilgol55', N'shmantul123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (7, N'bot@gmail.com', N'bot', N'bot123')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (8, N'gilramot@github.com', N'gil', N'omergolan')
 SET IDENTITY_INSERT [dbo].[Users] OFF
 Go
 

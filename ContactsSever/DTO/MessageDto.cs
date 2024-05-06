@@ -5,5 +5,6 @@
         public string username;
         public string challangename;
         public string usernamesent;
+        public string text;
     }
 }
