@@ -122,6 +122,14 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (34, 1, 3, N'1_3_1_5_2024.png')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (35, 7, 1, N'7_1_1_5_2024.png')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (36, 1, 1, N'1_1_1_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (37, 1, 4, N'1_4_6_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (38, 1, 3, N'1_3_6_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (39, 1, 8, N'1_8_6_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (40, 3, 4, N'3_4_6_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (41, 7, 7, N'7_7_6_5_2024.PNG')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (42, 7, 6, N'7_6_6_5_2024.mp4')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (43, 7, 1, N'7_1_6_5_2024.mp4')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (44, 3, 3, N'3_3_6_5_2024.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
