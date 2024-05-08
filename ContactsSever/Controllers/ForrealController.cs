@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
+using System;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ForrealSever.Controllers
 {
@@ -325,9 +328,9 @@ namespace ForrealSever.Controllers
         }
         #endregion
         #region add a comment to a post
-        [Route("Add Comment")]
+        [Route("AddComment")]
         [HttpPost]
-        public async Task<IActionResult> FreindRequest([FromBody] MessageDto m)
+        public async Task<IActionResult> AddComment([FromBody] MessageDto m)
         {
             try
             {
@@ -351,7 +354,42 @@ namespace ForrealSever.Controllers
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
             return BadRequest();
-        }          
+        }
+        #endregion
+        #region Get all comments of a post
+        [Route("GetPostComments")]
+        [HttpPost]
+        public async Task<ActionResult> GetPostComments([FromBody] PostDto postdto)
+        {
+            try
+            {
+                List<ChatDto> chats = new List<ChatDto>();
+                var user = context.Users.Where((u) => u.UserName == postdto.username).FirstOrDefault();
+                var ch = context.Challenges.Where((ch) => ch.Text == postdto.challengename).FirstOrDefault();
+                var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
+                foreach (var post in posts)
+                {
+                    var data = CreatePostData(post.Media);
+                    if (data.Date == DateTime.Now.Date)
+                    {
+                        var messages = context.Messages.Where((msg) => msg.UserChId == post.Id);
+                        foreach (var message in messages)
+                        {
+                            ChatDto chat = new ChatDto() { username = message.UserSent.UserName, text = message.Message1, time = message.Time };
+                            chats.Add(chat);
+                        }
+                        return Ok(chats);
+                    }
+                }
+                return BadRequest();
+             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "An error occurred while processing your request");
+            }
+        }
+
         #endregion
         #endregion
         private PostData CreatePostData(string name)

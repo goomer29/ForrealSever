@@ -130,6 +130,8 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (42, 7, 6, N'7_6_6_5_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (43, 7, 1, N'7_1_6_5_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (44, 3, 3, N'3_3_6_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (45, 6, 3, N'6_3_8_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (46, 1, 5, N'1_5_8_5_2024.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
@@ -149,4 +151,10 @@ INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (28, 1, 4)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (30, 2, 3)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (31, 7, 2)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (32, 2, 7)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (33, 6, 3)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (34, 6, 1)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (35, 6, 5)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (36, 6, 2)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (37, 6, 7)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (38, 1, 6)
 SET IDENTITY_INSERT [dbo].[Friends] OFF
