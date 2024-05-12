@@ -2,8 +2,8 @@
 {
     public class ChatDto
     {
-        public string username;
-        public string text;
-        public DateTime? time;
+        public string username { get; set; } = null!;
+        public string text { get; set; } = null!;
+        public DateTime? time { get; set; } = null!;
     }
 }

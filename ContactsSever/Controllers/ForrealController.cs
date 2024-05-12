@@ -12,6 +12,7 @@ using System.Data;
 using System.Numerics;
 using System.Text.Json;
 using System.Text.RegularExpressions;
+using static System.Net.Mime.MediaTypeNames;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ForrealSever.Controllers
@@ -340,14 +341,16 @@ namespace ForrealSever.Controllers
                 var user = context.Users.Where((u) => u.UserName == m.username).FirstOrDefault();
                 var ch = context.Challenges.Where((ch) => ch.Text == m.challangename).FirstOrDefault();
                 var usersent = context.Users.Where((u) => u.UserName == m.usernamesent).FirstOrDefault();
-                var posts = context.UsersChallenges;
-                
+                var posts = context.UsersChallenges
+                .Where(post => post.UserId == user.Id && post.ChallengeId == ch.Id)
+                 .ToList();
+
                 var time = DateTime.Now;
                 string day = time.Day.ToString(); string month = time.Month.ToString(); string Year = time.Year.ToString();
                 foreach (var post in posts)
                 {
                     var data = CreatePostData(post.Media);
-                    if (data.Date == DateTime.Now.Date&& data.ChallengeId==ch.Id&& data.UserId==user.Id)
+                    if (data.Date == DateTime.Now.Date)
                     {
                         Message message = new Message() { UserChId = post.Id, UserSentId = usersent.Id, Time = time, Message1 = m.text };
                         context.Messages.Add(message);
@@ -370,16 +373,18 @@ namespace ForrealSever.Controllers
                 List<ChatDto> chats = new List<ChatDto>();
                 var user = context.Users.Where((u) => u.UserName == postdto.username).FirstOrDefault();
                 var ch = context.Challenges.Where((ch) => ch.Text == postdto.challengename).FirstOrDefault();
-                var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
+                var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id).ToList();
                 foreach (var post in posts)
                 {
                     var data = CreatePostData(post.Media);
                     if (data.Date == DateTime.Now.Date)
                     {
-                        var messages = context.Messages.Where((msg) => msg.UserChId == post.Id);
+                        var messages = context.Messages.Where((msg) => msg.UserChId == post.Id).ToList();
                         foreach (var message in messages)
                         {
-                            ChatDto chat = new ChatDto() { username = message.UserSent.UserName, text = message.Message1, time = message.Time };
+                            ChatDto chat = new ChatDto();
+                            var usersent=context.Users.Where((u)=>u.Id==message.UserSentId).FirstOrDefault();
+                            chat.username = usersent.UserName; chat.text = message.Message1; chat.time = message.Time;
                             chats.Add(chat);
                         }
                         return Ok(chats);
