@@ -4,9 +4,12 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections.ObjectModel;
+using System.Data;
+using System.Numerics;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -337,13 +340,14 @@ namespace ForrealSever.Controllers
                 var user = context.Users.Where((u) => u.UserName == m.username).FirstOrDefault();
                 var ch = context.Challenges.Where((ch) => ch.Text == m.challangename).FirstOrDefault();
                 var usersent = context.Users.Where((u) => u.UserName == m.usernamesent).FirstOrDefault();
-                var posts = context.UsersChallenges.Where((p) => p.UserId == user.Id && p.ChallengeId == ch.Id);
+                var posts = context.UsersChallenges;
+                
                 var time = DateTime.Now;
                 string day = time.Day.ToString(); string month = time.Month.ToString(); string Year = time.Year.ToString();
                 foreach (var post in posts)
                 {
                     var data = CreatePostData(post.Media);
-                    if (data.Date == DateTime.Now.Date)
+                    if (data.Date == DateTime.Now.Date&& data.ChallengeId==ch.Id&& data.UserId==user.Id)
                     {
                         Message message = new Message() { UserChId = post.Id, UserSentId = usersent.Id, Time = time, Message1 = m.text };
                         context.Messages.Add(message);
