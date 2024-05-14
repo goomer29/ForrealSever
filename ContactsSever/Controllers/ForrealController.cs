@@ -377,7 +377,7 @@ namespace ForrealSever.Controllers
                 foreach (var post in posts)
                 {
                     var data = CreatePostData(post.Media);
-                    if (data.Date == DateTime.Now.Date)
+                    if (data.Date == postdto.DateTime)
                     {
                         var messages = context.Messages.Where((msg) => msg.UserChId == post.Id).ToList();
                         foreach (var message in messages)
