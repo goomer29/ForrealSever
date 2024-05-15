@@ -148,6 +148,7 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (55, 1, 5, N'1_5_15_5_2024.png')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (56, 8, 9, N'8_9_15_5_2024.png')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (57, 9, 3, N'9_3_15_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (58, 1, 12, N'1_12_15_5_2024.mp4')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
