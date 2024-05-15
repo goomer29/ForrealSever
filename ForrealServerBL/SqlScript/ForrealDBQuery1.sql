@@ -70,6 +70,7 @@ INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (5, N'n
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (6, N'shmantul@rushi.meow', N'gilgol55', N'shmantul123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (7, N'bot@gmail.com', N'bot', N'bot123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (8, N'gilramot@github.com', N'gil', N'omergolan')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (9, N'a@', N'avital', N'123')
 SET IDENTITY_INSERT [dbo].[Users] OFF
 Go
 
@@ -140,6 +141,13 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (48, 7, 5, N'7_5_11_5_2024.jpg')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (49, 1, 10, N'1_10_12_5_2024.jpg')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (50, 7, 5, N'7_5_12_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (51, 1, 9, N'1_9_15_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (52, 7, 9, N'7_9_15_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (53, 3, 4, N'3_4_15_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (54, 3, 10, N'3_10_15_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (55, 1, 5, N'1_5_15_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (56, 8, 9, N'8_9_15_5_2024.png')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (57, 9, 3, N'9_3_15_5_2024.png')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
@@ -173,4 +181,6 @@ INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time])
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (2, 50, 1, N'Lol', N'2024-05-12 11:46:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (3, 50, 7, N'bomboclattttt', N'2024-05-12 12:34:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (4, 50, 7, N'bomboclattttt', N'2024-05-12 12:34:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (5, 51, 1, N'this is the best post', N'2024-05-15 13:08:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (6, 51, 1, N'ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh', N'2024-05-15 13:08:00')
 SET IDENTITY_INSERT [dbo].[Messages] OFF
