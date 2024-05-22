@@ -88,6 +88,11 @@ INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (9, 2, N'go to
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (10, 3, N'jump in a rope 250 times')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (11, 4, N'eat a meal with only your hand')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (12, 5, N'jump to a pool with clothers on')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (13, 1, N'eat a cucumber with choclate')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (14, 2, N'make a reverse video')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (15, 3, N'give high five to a stranger')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (16, 4, N'learn to sing a whole song')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (17, 5, N'do a pyramid with 9 people')
 SET IDENTITY_INSERT [Challenges] OFF
 GO
 
