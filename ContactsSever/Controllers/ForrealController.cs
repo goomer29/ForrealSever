@@ -233,7 +233,7 @@ namespace ForrealSever.Controllers
             List<User> users = context.Users.ToList();
             foreach (var u in users)
             {
-                usernames.Add(new UserNameDto() { id = u.Id, text = u.UserName });
+                usernames.Add(new UserNameDto() { id = u.Id, text = u.UserName , email=u.Email});
             }
             return Ok(usernames);
         }
