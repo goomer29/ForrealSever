@@ -72,6 +72,7 @@ INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (7, N'b
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (8, N'gilramot@github.com', N'gil', N'omergolan')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (9, N'a@', N'avital', N'123')
 INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (10, N'zebra@gmail.com', N'zebra', N'white')
+INSERT INTO [dbo].[Users] ([ID], [Email], [UserName], [UserPswd]) VALUES (11, N'shalom@gmail.com', N'shalom', N'shalom123')
 SET IDENTITY_INSERT [dbo].[Users] OFF
 Go
 
@@ -88,11 +89,16 @@ INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (9, 2, N'go to
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (10, 3, N'jump in a rope 250 times')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (11, 4, N'eat a meal with only your hand')
 INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (12, 5, N'jump to a pool with clothers on')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (13, 1, N'eat a cucumber with choclate')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (14, 2, N'make a reverse video')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (15, 3, N'give high five to a stranger')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (16, 4, N'learn to sing a whole song')
-INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (17, 5, N'do a pyramid with 9 people')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (13, 1, N'touch the grass outside')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (14, 2, N'take a selfy with a stranger')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (15, 3, N'sniff a sock')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (16, 4, N'eat an ice cream with something gross')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (17, 5, N'make an add for something pointless and post it on youtube')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (18, 1, N'sit on a chair not the right way')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (19, 2, N'recycle a bottle')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (20, 3, N'hold in one hand red candy and in other a blue one')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (21, 4, N'play sport game with at least one stranger')
+INSERT INTO [dbo].[Challenges] ([ID], [Difficult], [Text]) VALUES (22, 5, N'go to a very crowd place with a costume ')
 SET IDENTITY_INSERT [Challenges] OFF
 GO
 
@@ -157,7 +163,8 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (58, 1, 12, N'1_12_15_5_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (59, 7, 6, N'7_6_16_5_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (60, 1, 3, N'1_3_16_5_2024.mp4')
-INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (61, 10, 9, N'10_9_16_5_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (61, 11, 3, N'11_3_6_6_2024.mp4')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (62, 1, 13, N'1_13_6_6_2024.jpg')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
@@ -181,9 +188,7 @@ INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (33, 6, 3)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (34, 6, 1)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (35, 6, 5)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (36, 6, 2)
-INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (37, 6, 7)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (38, 1, 6)
-INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (39, 10, 1)
 SET IDENTITY_INSERT [dbo].[Friends] OFF
 Go
 
@@ -198,5 +203,6 @@ INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time])
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (8, 59, 7, N'Thank you :D', N'2024-05-16 09:38:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (9, 59, 7, N'took me alot of time', N'2024-05-16 09:39:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (10, 59, 7, N'What was your challenge?', N'2024-05-16 09:42:00')
-INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (11, 59, 1, N'my challenge was tell a stupid joke', N'2024-05-16 15:46:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (11, 61, 1, N'Hahaha so funny', N'2024-06-06 02:15:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (12, 61, 11, N'thank you :D', N'2024-06-06 02:17:00')
 SET IDENTITY_INSERT [dbo].[Messages] OFF
