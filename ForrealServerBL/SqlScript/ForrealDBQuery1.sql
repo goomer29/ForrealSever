@@ -165,6 +165,7 @@ INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VA
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (60, 1, 3, N'1_3_16_5_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (61, 11, 3, N'11_3_6_6_2024.mp4')
 INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (62, 1, 13, N'1_13_6_6_2024.jpg')
+INSERT INTO [dbo].[Users_Challenges] ([ID], [UserID], [ChallengeID], [Media]) VALUES (63, 7, 4, N'7_4_6_6_2024.jpeg')
 SET IDENTITY_INSERT [dbo].[Users_Challenges] OFF
 Go
 
@@ -189,6 +190,8 @@ INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (34, 6, 1)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (35, 6, 5)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (36, 6, 2)
 INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (38, 1, 6)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (39, 1, 11)
+INSERT INTO [dbo].[Friends] ([ID], [User1ID], [User2ID]) VALUES (40, 11, 1)
 SET IDENTITY_INSERT [dbo].[Friends] OFF
 Go
 
@@ -205,4 +208,6 @@ INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time])
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (10, 59, 7, N'What was your challenge?', N'2024-05-16 09:42:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (11, 61, 1, N'Hahaha so funny', N'2024-06-06 02:15:00')
 INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (12, 61, 11, N'thank you :D', N'2024-06-06 02:17:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (13, 62, 7, N'very nice post!', N'2024-06-06 11:24:00')
+INSERT INTO [dbo].[Messages] ([ID], [UserChID], [UserSentID], [Message], [Time]) VALUES (14, 62, 1, N'thank you', N'2024-06-06 11:25:00')
 SET IDENTITY_INSERT [dbo].[Messages] OFF
